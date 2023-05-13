@@ -2,11 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @IsPublic()
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
@@ -17,18 +19,18 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Get(':email')
+  async findOne(@Param('email') email: string) {
+    return this.usersService.findOne(email);
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @Patch(':email')
+  async update(@Param('email') email: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(email, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Delete(':email')
+  remove(@Param('email') email: string) {
+    return this.usersService.remove(email);
   }
 }

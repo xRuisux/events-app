@@ -7,7 +7,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'root',
   password: 'root',
   database: 'eventsapp_database',
-  // entities: [],
   entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
   synchronize: true,
 }

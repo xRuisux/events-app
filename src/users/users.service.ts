@@ -17,7 +17,7 @@ export class UsersService {
     const existUser = await this.usersRepository.findOneBy({ email: createUserDto.email });
 
     if (existUser) {
-      return { message: 'email already exists!'}
+      return { message: 'Email address already exists.'}
     }
 
     const user = {
@@ -30,19 +30,26 @@ export class UsersService {
     return {...createdUser, password: undefined};
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(email: string, updateUserDto: UpdateUserDto) {
+    return `This action updates a #${email} user`;
   }
 
   async findAll(): Promise<User[]> {
     return await this.usersRepository.find();
   }
 
-  async findOne(id: number): Promise<User | null> {
-    return await this.usersRepository.findOneBy({ id });
+  async findOne(email: string): Promise<User | null> {
+    return await this.usersRepository.findOneBy({ email });
   }
 
-  async remove(id: number): Promise<void> {
-    await await this.usersRepository.delete(id);
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.usersRepository.findOne({
+      select: ['id', 'email', 'password'],
+      where: { email },
+    });
+  }
+
+  async remove(email: string): Promise<void> {
+    await await this.usersRepository.delete(email);
   }
 }
