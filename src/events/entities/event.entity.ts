@@ -1,8 +1,8 @@
-import { User } from 'src/users/entities/user.entity';
+import { Users } from 'src/users/entities/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany } from 'typeorm';
 
 @Entity()
-export class Event {
+export class Events {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,18 +12,21 @@ export class Event {
   @Column()
   date: Date;
 
+  @Column()
+  description: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
   createdAt: Date;
 
   @Column({ default: 'active' })
   status: eventStatus;
 
-  @ManyToMany(() => User)
+  @ManyToMany(() => Users)
   @JoinTable()
-  users: User[];
+  users: Users[];
 };
 
-enum eventStatus {
+export enum eventStatus {
   ACTIVE = 'active',
   CANCELED = 'canceled',
   FINISHED = 'finished'
