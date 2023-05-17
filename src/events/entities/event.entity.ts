@@ -1,5 +1,5 @@
-import { Users } from 'src/users/entities/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany } from 'typeorm';
+import { Tickets } from 'src/tickets/entities/ticket.entity';
+import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity()
 export class Events {
@@ -21,9 +21,8 @@ export class Events {
   @Column({ default: 'active' })
   status: eventStatus;
 
-  @ManyToMany(() => Users)
-  @JoinTable()
-  users: Users[];
+  @OneToMany(() => Tickets, (ticket) => ticket.event)
+  tickets: Tickets[]
 };
 
 export enum eventStatus {

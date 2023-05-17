@@ -27,12 +27,12 @@ export class EventsController {
     return this.eventsService.update(+id, updateEventDto);
   }
 
-  @Patch('addUser/:id')
-  addUser(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-    console.log('aqui');
+  // @Patch('addUser/:id')
+  // addUser(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
+  //   console.log('aqui');
     
-    return this.eventsService.addUser(+id, updateEventDto);
-  }
+  //   return this.eventsService.addUser(+id, updateEventDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

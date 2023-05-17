@@ -1,5 +1,5 @@
-import { Events } from 'src/events/entities/event.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Tickets } from 'src/tickets/entities/ticket.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Users {
@@ -27,6 +27,6 @@ export class Users {
   @Column({ default: true })
   isActive: boolean;
 
-  @ManyToMany(() => Events, (event) => event.users)
-  events: Events[]
+  @OneToMany(() => Tickets, (ticket) => ticket.event)
+  tickets: Tickets[]
 }
