@@ -10,11 +10,12 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { TicketsModule } from './tickets/tickets.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    UsersModule, EventsModule, AuthModule, TicketsModule],
+    UsersModule, EventsModule, AuthModule, TicketsModule, PaymentsModule],
   controllers: [AppController],
   providers: [AppService,
   {

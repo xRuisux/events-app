@@ -1,0 +1,56 @@
+    <html>
+    <head>
+      <script src="https://sdk.mercadopago.com/js/v2"></script>
+    </head>
+    <body>
+      <div id="cardPaymentBrick_container"></div>
+      <script>
+        const mp = new MercadoPago('TEST-8d783fca-e5e9-4a62-bf70-79f5dd325138');
+        const bricksBuilder = mp.bricks();
+        const renderCardPaymentBrick = async (bricksBuilder) => {
+          const settings = {
+            initialization: {
+              amount: 100, // valor total a ser pago
+              payer: {
+                email: "",
+              },
+            },
+            customization: {
+              visual: {
+                hideFormTitle: true,
+                style: {
+                  theme: 'dark', // | 'dark' | 'bootstrap' | 'flat'
+                }
+              },
+            },
+            callbacks: {
+              onReady: () => {
+                // callback chamado quando o Brick estiver pronto
+              },
+              onSubmit: (cardFormData) => {
+                //  callback chamado o usuário clicar no botão de submissão dos dados
+                //  exemplo de envio dos dados coletados pelo Brick para seu servidor
+                console.log(cardFormData);
+              },
+              onError: (error) => {
+                // callback chamado para todos os casos de erro do Brick
+              },
+            },
+          };
+          window.cardPaymentBrickController = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
+        };
+        renderCardPaymentBrick(bricksBuilder);
+      </script>
+    </body>
+    </html>
+    
+
+
+
+
+
+
+
+
+
+
