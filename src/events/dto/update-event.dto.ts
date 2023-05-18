@@ -1,6 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { CreateEventDto } from './create-event.dto';
-import { IsDateString, IsEmail, IsEnum, IsString,  } from "class-validator";
-import { eventStatus } from "./../entities/event.entity";
 
 export class UpdateEventDto extends PartialType(CreateEventDto) {}

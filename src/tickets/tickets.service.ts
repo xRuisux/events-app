@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
-import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tickets } from './entities/ticket.entity';
@@ -33,10 +32,6 @@ export class TicketsService {
 
   findOne(id: number) {
     return `This action returns a #${id} ticket`;
-  }
-
-  update(id: number, updateTicketDto: UpdateTicketDto) {
-    return `This action updates a #${id} ticket`;
   }
 
   remove(id: number) {
