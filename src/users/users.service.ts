@@ -15,7 +15,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const existUser = await this.usersRepository.findOneBy({ email: createUserDto.email });
-
+    
     if (existUser) {
       return { message: 'Email address already exists.'}
     }
@@ -24,7 +24,7 @@ export class UsersService {
       ...createUserDto,
       password: await bcrypt.hash(createUserDto.password, 10),
     };
-
+    
     const createdUser = await this.usersRepository.save(user);
 
     return {...createdUser, password: undefined};

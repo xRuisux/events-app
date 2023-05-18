@@ -1,5 +1,5 @@
-import { Events } from 'src/events/entities/event.entity';
-import { Users } from 'src/users/entities/user.entity';
+import { Events } from './../../events/entities/event.entity';
+import { Users } from './../../users/entities/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity()
