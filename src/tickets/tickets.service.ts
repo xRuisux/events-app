@@ -17,8 +17,7 @@ export class TicketsService {
 
   async create(createTicketDto: CreateTicketDto): Promise<Tickets> {
     const existUser = await this.usersService.findOne(createTicketDto.userEmail);
-    console.log(`createTicketDto: ${JSON.stringify(createTicketDto)}`);
-    
+
     const existEvent = await this.eventsService.findOne(+createTicketDto.eventId);
 
     if (existUser && existEvent) {
