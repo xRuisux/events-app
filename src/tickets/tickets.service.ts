@@ -26,7 +26,7 @@ export class TicketsService {
     }
   }
 
-  async remove(id: number): Promise<Tickets> {
-    return await this.ticketsRepository.save({ paymentId: id, status: 'refunded' });
+  async remove(id: number) {
+    return await this.ticketsRepository.delete({ paymentId: id })
   }
 }
