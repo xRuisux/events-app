@@ -22,17 +22,10 @@ export class EventsController {
     return this.eventsService.findOne(+id);
   }
 
-  @Patch('updateEvent/:id')
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
     return this.eventsService.update(+id, updateEventDto);
   }
-
-  // @Patch('addUser/:id')
-  // addUser(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-  //   console.log('aqui');
-    
-  //   return this.eventsService.addUser(+id, updateEventDto);
-  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -8,4 +8,8 @@ export class CreateTicketDto {
   @IsNumber()
   @Type(() => Number)
   eventId: number;
+
+  @IsNumber()
+  @Type(() => Number)
+  paymentId: number;
 }

@@ -11,8 +11,11 @@ export class Tickets {
   createdAt: Date;
 
   @ManyToOne(() => Users, (user) => user.tickets)
-  user: Users
+  user: Users;
 
   @ManyToOne(() => Events, (event) => event.tickets)
-  event: Events
+  event: Events;
+
+  @Column()
+  paymentId: number;
 }

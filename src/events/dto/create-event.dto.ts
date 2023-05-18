@@ -1,5 +1,6 @@
-import { IsDateString, IsEnum, IsString,  } from "class-validator";
+import { IsDateString, IsEnum, IsNumber, IsString,  } from "class-validator";
 import { eventStatus } from "./../entities/event.entity";
+import { Type } from "class-transformer";
 
 export class CreateEventDto {
   @IsString()
@@ -10,6 +11,10 @@ export class CreateEventDto {
 
   @IsEnum(eventStatus)
   status;
+
+  @IsNumber()
+  @Type(() => Number)
+  price: number;
 
   @IsDateString()
   date: Date;

@@ -22,7 +22,10 @@ export class Events {
   status: eventStatus;
 
   @OneToMany(() => Tickets, (ticket) => ticket.event)
-  tickets: Tickets[]
+  tickets: Tickets[];
+
+  @Column()
+  price: number;
 };
 
 export enum eventStatus {

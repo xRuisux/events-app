@@ -9,6 +9,7 @@ import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Tickets]), UsersModule, EventsModule],
   controllers: [TicketsController],
-  providers: [TicketsService]
+  providers: [TicketsService],
+  exports: [TicketsService]
 })
 export class TicketsModule {}

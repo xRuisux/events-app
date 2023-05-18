@@ -31,15 +31,23 @@ export class UsersService {
   }
 
   async update(email: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${email} user`;
+    const existUser = await this.usersRepository.findOneBy({ email });
+    
+    if (existUser) {
+      const id = existUser.id
+
+      return await this.usersRepository.save({ id, ...updateUserDto });
+    }
+    
+    return `This user does not exist.`;
   }
 
   async findAll(): Promise<Users[]> {
-    return await this.usersRepository.find();
+    return await this.usersRepository.find({relations: { tickets: true }});
   }
 
   async findOne(email: string): Promise<Users | null> {
-    return await this.usersRepository.findOneBy({ email });
+    return await this.usersRepository.findOne({ relations: { tickets: true }, where: { email }});
   }
 
   async findByEmail(email: string): Promise<Users | null> {
@@ -50,6 +58,6 @@ export class UsersService {
   }
 
   async remove(email: string): Promise<void> {
-    await await this.usersRepository.delete(email);
+    await this.usersRepository.delete(email);
   }
 }

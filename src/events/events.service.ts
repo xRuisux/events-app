@@ -17,34 +17,22 @@ export class EventsService {
   }
 
   async findAll() {
-    return await this.eventsRepository.find();
+    return await this.eventsRepository.find({ relations: { tickets: true } });
   }
 
   async findOne(id: number) {
-    return await this.eventsRepository.findOneBy({ id });
+    return await this.eventsRepository.findOne({ relations: { tickets: true } , where: { id } });
   }
 
-  update(id: number, updateEventDto: UpdateEventDto) {
+  async update(id: number, updateEventDto: UpdateEventDto) {
+    const existEvent = await this.eventsRepository.findOneBy({ id });
+
+    if (existEvent) {
+      return await this.eventsRepository.save({ id, ...updateEventDto });
+    }
     
-    return `This action updates a #${id} event`;
+    return `This event does not exists.`;
   }
-
-  // async addUser(id, updateEventDto: UpdateEventDto) {
-  //   const existEvent = await this.eventsRepository.findOne({where:{ id }, relations:['users']});
-  //   const existUser = await this.usersService.findOne(updateEventDto.userEmail);
-
-  //   console.log(existEvent);
-  //   console.log(existUser);
-    
-  //   if (Object.getOwnPropertyNames(existEvent).includes('users')) {
-  //     existEvent.users.push(existUser);
-  //     return await this.eventsRepository.save(existEvent);
-  //   }
-
-  //   console.log(`teste : ${ JSON.stringify({ ...existEvent, existUser }) }`);
-    
-  //   return await this.eventsRepository.save({ ...existEvent, users: [existUser] })
-  // }
 
   remove(id: number) {
     return `This action removes a #${id} event`;
