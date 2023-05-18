@@ -26,15 +26,7 @@ export class TicketsService {
     }
   }
 
-  findAll() {
-    return `This action returns all tickets`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} ticket`;
+  async remove(id: number): Promise<Tickets> {
+    return await this.ticketsRepository.save({ paymentId: id, status: 'refunded' });
   }
 }

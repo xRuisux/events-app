@@ -12,14 +12,4 @@ export class TicketsController {
   create(@Body() createTicketDto: CreateTicketDto) {
     return this.ticketsService.create(createTicketDto);
   }
-
-  @Get()
-  findAll() {
-    return this.ticketsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ticketsService.findOne(+id);
-  }
 }

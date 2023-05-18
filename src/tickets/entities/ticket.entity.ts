@@ -1,6 +1,6 @@
 import { Events } from './../../events/entities/event.entity';
 import { Users } from './../../users/entities/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Tickets {
@@ -18,4 +18,13 @@ export class Tickets {
 
   @Column()
   paymentId: number;
-}
+
+  @Column({ default: 'active' })
+  ticket_status: ticketStatus;
+};
+
+export enum ticketStatus {
+  ACTIVE = 'active',
+  REFUNDED = 'refunded',
+  USED = 'used'
+};
